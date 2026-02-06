@@ -11,6 +11,10 @@ export default function Comments() {
     const handleSubmit = async (e) => {
         e.preventDefault()
         if (!comment.trim()) return
+        if (comment.length > 500) {
+            setMessage('Error: Comment must be 500 characters or less.')
+            return
+        }
 
         setIsSubmitting(true)
         setMessage('')
@@ -88,6 +92,7 @@ export default function Comments() {
                     onChange={(e) => setComment(e.target.value)}
                     placeholder="Leave a comment..."
                     rows="4"
+                    maxLength={500}
                     style={{
                         padding: '12px',
                         borderRadius: '8px',
